@@ -34,6 +34,9 @@ app.post('/table', (res, req)=>{
     }
 })
 
+
+
+// look at this
 // read table and waitlist data
 app.get('/table', (res, req) => {
     res.send({
