@@ -26,9 +26,11 @@ app.listen(3000, () => {
 // }
 
 // get customer info
-app.post('/table', (res, req)=>{   
+app.post('/table', (req, res)=>{ 
+    console.log('ping')  
     if(table.length < 5){
         table.push(req.body)
+        console.log(table)
     } else {
         waitList.push(req.body)
     }
@@ -38,7 +40,7 @@ app.post('/table', (res, req)=>{
 
 // look at this
 // read table and waitlist data
-app.get('/table', (res, req) => {
+app.get('/table', (req, res) => {
     res.send({
         table: table,
         waitList: waitList
