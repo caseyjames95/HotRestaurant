@@ -27,13 +27,14 @@ app.listen(3000, () => {
 
 // get customer info
 app.post('/table', (req, res)=>{ 
-    console.log('ping')  
+    //res.sendFile(path.join(__dirname, './make.html'))
     if(table.length < 5){
         table.push(req.body)
         console.log(table)
     } else {
         waitList.push(req.body)
-    }
+    }   
+    res.sendStatus(200)
 })
 
 
@@ -41,6 +42,7 @@ app.post('/table', (req, res)=>{
 // look at this
 // read table and waitlist data
 app.get('/table', (req, res) => {
+   // res.sendFile(path.join(__dirname, './view.html'))
     res.send({
         table: table,
         waitList: waitList

@@ -20,13 +20,13 @@
       <a class="btn btn-primary btn-lg" href='./index.html' role="button">Home</a>
     </div>
   </div>
-
+<div id='submit'></div>
   <!-- view tables -->
 <div class="card">
   <div class="card-header">
     Reservations
   </div>
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush" id="tables">
   </ul>
 </div>
 
@@ -35,11 +35,41 @@
   Waiting List
   </div>
   <div class = 'body'>
-  <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush" id="waitList">
   </ul>
  </div>
 </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src='./app.js'></script>
+<script>
+  axios.get('/table')
+      .then(res => {
+        console.log(res)
+        res.data.table.forEach(element => {
+          let ele  =  document.createElement('li')
+          ele.innerHTML = `
+          ----------------------------------------
+          <p>Name: ${element.name}</p>
+          <p>Phone: ${element.phone}</p>
+          <p>Email: ${element.email}</p>
+          -----------------------------------------
+          `
+          document.getElementById('tables').append(ele)
+        });
+         res.data.waitList.forEach(element => {
+          let ele = document.createElement('li')
+          ele.innerHTML = `
+          ----------------------------------------
+          <p>Name: ${element.name}</p>
+          <p>Phone: ${element.phone}</p>
+          <p>Email: ${element.email}</p>
+          -----------------------------------------
+          `
+          document.getElementById('waitList').append(ele)
+        });
+      })
+      .catch(e => (e))
+
+</script>
 </body>
 </html>
